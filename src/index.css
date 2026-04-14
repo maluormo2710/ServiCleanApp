@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-manrope: "Manrope", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  
+  --color-background: #f8f9fa;
+  --color-on-surface: #191c1d;
+  --color-primary: #006565;
+  --color-primary-light: #008080;
+  --color-surface-low: #f3f4f5;
+  --color-surface-lowest: #ffffff;
+  
+  --shadow-editorial: 0 12px 32px rgba(0, 101, 101, 0.06);
+  --shadow-ghost: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+@layer base {
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-inter);
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-manrope font-extrabold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-full px-8 py-4 font-manrope font-bold text-white transition-all active:scale-95 shadow-editorial;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  }
+
+  .input-minimal {
+    @apply w-full bg-surface-low border-none rounded-2xl py-4 px-6 transition-all font-inter text-on-surface placeholder:text-slate-400 focus:ring-0 focus:bg-white;
+    border-bottom: 2px solid transparent;
+  }
+
+  .input-minimal:focus {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .card-editorial {
+    @apply bg-surface-lowest rounded-[2rem] p-8 shadow-editorial border-none;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
