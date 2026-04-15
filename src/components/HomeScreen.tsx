@@ -1,21 +1,52 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { dbColaboradores } from '../data';
 import { Avatar } from './Avatar';
 import { Star, MapPin, Search } from 'lucide-react';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 export const HomeScreen: React.FC<{ onSelectWorker: (id: number) => void }> = ({ onSelectWorker }) => {
   return (
     <div className="pb-32">
       <header className="pt-20 px-8 mb-12">
-        <h1 className="text-5xl font-extrabold tracking-tight text-on-surface mb-4 leading-tight">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-5xl font-extrabold tracking-tight text-on-surface mb-4 leading-tight"
+        >
           Encuentra la frescura <br />
           <span className="text-primary">que tu hogar merece.</span>
-        </h1>
-        <p className="text-on-surface-variant text-lg max-w-xl mb-10 leading-relaxed">
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-on-surface-variant text-lg max-w-xl mb-10 leading-relaxed"
+        >
           Reserva profesionales verificados para una limpieza profunda y garantizada en minutos.
-        </p>
+        </motion.p>
 
-        <div className="bg-white p-2 rounded-[2.5rem] shadow-editorial flex flex-col md:flex-row items-center gap-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="bg-white p-2 rounded-[2.5rem] shadow-editorial flex flex-col md:flex-row items-center gap-2"
+        >
           <div className="flex-1 flex items-center gap-4 px-6 py-4 rounded-full bg-surface-low w-full">
             <Search size={20} className="text-primary" />
             <input 
@@ -27,7 +58,7 @@ export const HomeScreen: React.FC<{ onSelectWorker: (id: number) => void }> = ({
           <button className="btn-primary w-full md:w-auto">
             Buscar
           </button>
-        </div>
+        </motion.div>
       </header>
 
       <section className="px-8">
@@ -38,9 +69,15 @@ export const HomeScreen: React.FC<{ onSelectWorker: (id: number) => void }> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {dbColaboradores.map((worker) => (
-            <div 
+            <motion.div 
+              variants={itemVariants}
               key={worker.id}
               onClick={() => onSelectWorker(worker.id)}
               className="bg-white rounded-[2rem] p-6 flex items-start gap-6 hover:shadow-ghost transition-all cursor-pointer group"
@@ -73,9 +110,9 @@ export const HomeScreen: React.FC<{ onSelectWorker: (id: number) => void }> = ({
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </div>
   );

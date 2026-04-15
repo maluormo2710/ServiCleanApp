@@ -1,24 +1,43 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { User, Mail, Phone, MapPin, CreditCard, Shield, ChevronRight, Edit2 } from 'lucide-react';
 
 interface ProfileScreenProps {
   onNavigate: (screen: string) => void;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
+
 export const ProfileScreen: React.FC<ProfileScreenProps> = ({ onNavigate }) => {
   return (
-    <div className="pb-32 pt-20 px-8 max-w-4xl mx-auto">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="pb-32 pt-20 px-8 max-w-4xl mx-auto"
+    >
       <header className="mb-12 flex justify-between items-center">
-        <div>
+        <motion.div variants={itemVariants}>
           <h1 className="text-5xl font-extrabold tracking-tight text-on-surface mb-2">Mi Perfil</h1>
           <p className="text-lg text-on-surface-variant">Gestiona tu información personal.</p>
-        </div>
-        <button className="w-12 h-12 bg-surface-low rounded-full flex items-center justify-center text-primary hover:bg-teal-50 transition-colors">
+        </motion.div>
+        <motion.button variants={itemVariants} className="w-12 h-12 bg-surface-low rounded-full flex items-center justify-center text-primary hover:bg-teal-50 transition-colors">
           <Edit2 size={20} />
-        </button>
+        </motion.button>
       </header>
 
-      <div className="card-editorial flex flex-col md:flex-row items-center gap-8 mb-10">
+      <motion.div variants={itemVariants} className="card-editorial flex flex-col md:flex-row items-center gap-8 mb-10">
         <div className="relative">
           <div className="w-32 h-32 bg-primary text-white rounded-[2rem] flex items-center justify-center text-4xl font-extrabold shadow-editorial">
             MP
@@ -38,12 +57,13 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ onNavigate }) => {
             <Phone size={16} /> +57 300 000 0000
           </p>
         </div>
-      </div>
+      </motion.div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-bold mb-4">Accesos Rápidos</h3>
+        <motion.h3 variants={itemVariants} className="text-xl font-bold mb-4">Accesos Rápidos</motion.h3>
         
-        <button 
+        <motion.button 
+          variants={itemVariants}
           onClick={() => onNavigate('addresses')}
           className="w-full card-editorial p-6 flex items-center justify-between hover:bg-surface-low transition-colors group"
         >
@@ -57,9 +77,10 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ onNavigate }) => {
             </div>
           </div>
           <ChevronRight size={24} className="text-slate-300 group-hover:text-primary transition-colors" />
-        </button>
+        </motion.button>
 
-        <button 
+        <motion.button 
+          variants={itemVariants}
           onClick={() => onNavigate('payment-methods')}
           className="w-full card-editorial p-6 flex items-center justify-between hover:bg-surface-low transition-colors group"
         >
@@ -73,8 +94,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({ onNavigate }) => {
             </div>
           </div>
           <ChevronRight size={24} className="text-slate-300 group-hover:text-primary transition-colors" />
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 };

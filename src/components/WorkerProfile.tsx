@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { dbColaboradores } from '../data';
 import { Avatar } from './Avatar';
 import { Star, MapPin, ArrowLeft, Verified, ShieldCheck, Calendar, MessageCircle, X, CreditCard, CheckCircle, ChevronDown } from 'lucide-react';
@@ -11,6 +12,21 @@ interface WorkerProfileProps {
   addresses: Address[];
   paymentMethods: PaymentMethod[];
 }
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, onAddBooking, addresses, paymentMethods }) => {
   const worker = dbColaboradores.find(w => w.id === workerId);
@@ -90,9 +106,14 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
         <div className="w-10 h-10" /> {/* Spacer */}
       </header>
 
-      <main className="pt-24 px-8 max-w-4xl mx-auto">
+      <motion.main 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="pt-24 px-8 max-w-4xl mx-auto"
+      >
         <section className="mt-12 mb-16 flex flex-col md:flex-row gap-12 items-start">
-          <div className="relative w-full md:w-1/3 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+          <motion.div variants={itemVariants} className="relative w-full md:w-1/3 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
             <Avatar 
               src={worker.avatarUrl} 
               name={worker.nombre} 
@@ -104,9 +125,9 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 Disponible ahora
               </span>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex-1 space-y-6 pt-4">
+          <motion.div variants={itemVariants} className="flex-1 space-y-6 pt-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2 mb-1">
                 <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[1rem] font-bold uppercase tracking-wider">Top Rated</span>
@@ -141,10 +162,10 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 Enviar Mensaje
               </button>
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        <section className="mb-16">
+        <motion.section variants={itemVariants} className="mb-16">
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
             Sobre mí
           </h3>
@@ -153,9 +174,9 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
               {worker.bio}
             </p>
           </div>
-        </section>
+        </motion.section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           <div className="md:col-span-2 bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
               <Verified size={20} className="text-primary" />
@@ -186,21 +207,33 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </motion.div>
+      </motion.main>
 
       {/* Booking Flow Modal */}
-      {bookingStep > 0 && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-on-surface/40 backdrop-blur-sm p-0 md:p-4 transition-opacity">
-          <div className="bg-surface-lowest w-full md:max-w-lg rounded-t-[3rem] md:rounded-[3rem] p-8 md:p-10 shadow-ghost relative animate-in slide-in-from-bottom-8 md:slide-in-from-bottom-0 md:zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
-            {bookingStep < 3 && (
-              <button 
-                onClick={() => setBookingStep(0)}
-                className="absolute top-6 right-6 p-2 bg-surface-low rounded-full text-slate-400 hover:text-on-surface transition-colors"
-              >
-                <X size={20} />
-              </button>
-            )}
+      <AnimatePresence>
+        {bookingStep > 0 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-on-surface/40 backdrop-blur-sm p-0 md:p-4"
+          >
+            <motion.div 
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 50, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="bg-surface-lowest w-full md:max-w-lg rounded-t-[3rem] md:rounded-[3rem] p-8 md:p-10 shadow-ghost relative max-h-[90vh] overflow-y-auto no-scrollbar"
+            >
+              {bookingStep < 3 && (
+                <button 
+                  onClick={() => setBookingStep(0)}
+                  className="absolute top-6 right-6 p-2 bg-surface-low rounded-full text-slate-400 hover:text-on-surface transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              )}
 
             {/* Step 1: Schedule */}
             {bookingStep === 1 && (
@@ -374,9 +407,10 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 </button>
               </div>
             )}
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { HomeScreen } from './components/HomeScreen';
 import { WorkerProfile } from './components/WorkerProfile';
 import { LoginScreen } from './components/LoginScreen';
@@ -159,7 +160,18 @@ export default function App() {
         onNavigate={(screen) => setCurrentScreen(screen as Screen)} 
       />
 
-      {renderScreen()}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentScreen}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full h-full"
+        >
+          {renderScreen()}
+        </motion.div>
+      </AnimatePresence>
       
       {currentScreen !== 'login' && currentScreen !== 'worker-profile' && (
         <BottomNav activeTab={currentScreen} onTabChange={(screen) => setCurrentScreen(screen as Screen)} />
