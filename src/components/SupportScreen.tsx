@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User } from 'lucide-react';
 
 export const SupportScreen: React.FC = () => {
@@ -6,6 +6,15 @@ export const SupportScreen: React.FC = () => {
     { id: 1, sender: 'bot', text: '¡Hola! Soy el asistente virtual de ServiClean. ¿En qué puedo ayudarte hoy?' }
   ]);
   const [input, setInput] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const quickQuestions = [
     '¿Cómo cancelo una reserva?',
@@ -49,6 +58,7 @@ export const SupportScreen: React.FC = () => {
               </div>
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
 
         <div className="mt-6 pt-4 border-t border-slate-100 shrink-0">
