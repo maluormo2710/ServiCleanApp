@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Apple, Smartphone, User, Phone } from 'lucide-react';
 
-export const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+export const LoginScreen: React.FC<{ onLogin: () => void, onNavigateToComingSoon: () => void }> = ({ onLogin, onNavigateToComingSoon }) => {
   const [role, setRole] = useState<'cliente' | 'colaborador'>('cliente');
   const [mode, setMode] = useState<'login' | 'register'>('login');
 
@@ -135,7 +135,13 @@ export const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                 </div>
                 {mode === 'login' && (
                   <div className="text-right mt-2">
-                    <a href="#" className="text-xs font-bold text-primary hover:underline">¿Olvidaste tu contraseña?</a>
+                    <button 
+                      type="button"
+                      onClick={onNavigateToComingSoon} 
+                      className="text-xs font-bold text-primary hover:underline"
+                    >
+                      ¿Olvidaste tu contraseña?
+                    </button>
                   </div>
                 )}
               </div>
@@ -152,11 +158,19 @@ export const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <button className="flex items-center justify-center space-x-2 py-3 border border-slate-100 rounded-xl hover:bg-surface-low transition-colors">
+              <button 
+                type="button"
+                onClick={onNavigateToComingSoon}
+                className="flex items-center justify-center space-x-2 py-3 border border-slate-100 rounded-xl hover:bg-surface-low transition-colors"
+              >
                 <Smartphone size={20} className="text-on-surface" />
                 <span className="text-sm font-bold">Google</span>
               </button>
-              <button className="flex items-center justify-center space-x-2 py-3 border border-slate-100 rounded-xl hover:bg-surface-low transition-colors">
+              <button 
+                type="button"
+                onClick={onNavigateToComingSoon}
+                className="flex items-center justify-center space-x-2 py-3 border border-slate-100 rounded-xl hover:bg-surface-low transition-colors"
+              >
                 <Apple size={20} className="text-on-surface" />
                 <span className="text-sm font-bold">Apple</span>
               </button>

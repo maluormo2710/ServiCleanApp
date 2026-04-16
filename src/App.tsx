@@ -14,10 +14,11 @@ import { SupportScreen } from './components/SupportScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { ChatScreen } from './components/ChatScreen';
+import { ComingSoonScreen } from './components/ComingSoonScreen';
 import { Booking, Address, PaymentMethod, AppNotification, NotificationSettings } from './types';
 import { Menu, X, Sparkles, Clock, CreditCard, Bell } from 'lucide-react';
 
-type Screen = 'login' | 'home' | 'worker-profile' | 'bookings' | 'notifications' | 'profile' | 'admin' | 'addresses' | 'payment-methods' | 'support' | 'settings' | 'chat';
+type Screen = 'login' | 'home' | 'worker-profile' | 'bookings' | 'notifications' | 'profile' | 'admin' | 'addresses' | 'payment-methods' | 'support' | 'settings' | 'chat' | 'promotions';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
@@ -163,9 +164,12 @@ export default function App() {
   const renderScreen = () => {
     switch (currentScreen) {
       case 'login':
-        return <LoginScreen onLogin={() => setCurrentScreen('home')} />;
+        return <LoginScreen onLogin={() => setCurrentScreen('home')} onNavigateToComingSoon={() => setCurrentScreen('promotions')} />;
       case 'home':
-        return <HomeScreen onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} />;
+        return <HomeScreen 
+          onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} 
+          onNavigateToMap={() => setCurrentScreen('promotions')}
+        />;
       case 'worker-profile':
         if (selectedWorkerId) {
           return <WorkerProfile 
@@ -177,14 +181,20 @@ export default function App() {
             onNavigateToChat={(id) => { setSelectedWorkerId(id); setCurrentScreen('chat'); }}
           />;
         }
-        return <HomeScreen onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} />;
+        return <HomeScreen 
+          onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} 
+          onNavigateToMap={() => setCurrentScreen('promotions')}
+        />;
       case 'chat':
         if (selectedWorkerId) {
           return <ChatScreen workerId={selectedWorkerId} onBack={() => setCurrentScreen('worker-profile')} />;
         }
-        return <HomeScreen onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} />;
+        return <HomeScreen 
+          onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} 
+          onNavigateToMap={() => setCurrentScreen('promotions')}
+        />;
       case 'bookings':
-        return <BookingsScreen bookings={bookings} setBookings={setBookings} />;
+        return <BookingsScreen bookings={bookings} setBookings={setBookings} onNavigateToReport={() => setCurrentScreen('promotions')} />;
       case 'notifications':
         return <NotificationsScreen notifications={notifications} />;
       case 'admin':
@@ -195,6 +205,8 @@ export default function App() {
         return <PaymentMethodsScreen paymentMethods={paymentMethods} setPaymentMethods={setPaymentMethods} />;
       case 'support':
         return <SupportScreen />;
+      case 'promotions':
+        return <ComingSoonScreen onBack={() => setCurrentScreen('home')} />;
       case 'settings':
         return <SettingsScreen settings={notificationSettings} setSettings={setNotificationSettings} />;
       case 'profile':
@@ -204,7 +216,7 @@ export default function App() {
     }
   };
 
-  const showHamburger = !['login', 'worker-profile', 'chat'].includes(currentScreen);
+  const showHamburger = !['login', 'worker-profile', 'chat', 'promotions'].includes(currentScreen);
   const showAvatar = ['home', 'bookings', 'notifications', 'support'].includes(currentScreen);
 
   const renderIcon = (type: string) => {
@@ -278,7 +290,7 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
       
-      {currentScreen !== 'login' && currentScreen !== 'worker-profile' && currentScreen !== 'chat' && (
+      {currentScreen !== 'login' && currentScreen !== 'worker-profile' && currentScreen !== 'chat' && currentScreen !== 'promotions' && (
         <BottomNav activeTab={currentScreen} onTabChange={(screen) => setCurrentScreen(screen as Screen)} />
       )}
     </div>

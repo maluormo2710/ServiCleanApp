@@ -9,7 +9,9 @@ export const SupportScreen: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export const SupportScreen: React.FC = () => {
   };
 
   return (
-    <div className="pb-32 pt-20 px-4 md:px-8 max-w-4xl mx-auto h-screen flex flex-col">
+    <div className="pb-32 pt-20 px-4 md:px-8 max-w-4xl mx-auto h-[100dvh] flex flex-col">
       <header className="mb-8 shrink-0">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-2">Soporte</h1>
         <p className="text-lg text-on-surface-variant">Estamos aquí para ayudarte.</p>

@@ -142,14 +142,9 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
         <div className="w-10 h-10" /> {/* Spacer */}
       </header>
 
-      <motion.main 
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-        className="pt-24 px-8 max-w-4xl mx-auto"
-      >
+      <main className="pt-24 px-8 max-w-4xl mx-auto">
         <section className="mt-12 mb-16 flex flex-col md:flex-row gap-12 items-start">
-          <motion.div variants={itemVariants} className="relative w-full md:w-1/3 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+          <div className="relative w-full md:w-1/3 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
             <Avatar 
               src={worker.avatarUrl} 
               name={worker.nombre} 
@@ -161,9 +156,9 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 Disponible ahora
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div variants={itemVariants} className="flex-1 space-y-6 pt-4">
+          <div className="flex-1 space-y-6 pt-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2 mb-1">
                 <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[1rem] font-bold uppercase tracking-wider">Top Rated</span>
@@ -201,10 +196,10 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 Enviar Mensaje
               </button>
             </div>
-          </motion.div>
+          </div>
         </section>
 
-        <motion.section variants={itemVariants} className="mb-16">
+        <section className="mb-16">
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
             Sobre mí
           </h3>
@@ -213,11 +208,11 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
               {worker.bio}
             </p>
           </div>
-        </motion.section>
+        </section>
 
         {/* Galería de Trabajos */}
         {worker.galeria && worker.galeria.length > 0 && (
-          <motion.section variants={itemVariants} className="mb-16">
+          <section className="mb-16">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
               Trabajos Anteriores
             </h3>
@@ -228,10 +223,10 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 </div>
               ))}
             </div>
-          </motion.section>
+          </section>
         )}
 
-        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="md:col-span-2 bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
               <Verified size={20} className="text-primary" />
@@ -262,11 +257,11 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Reseñas Section */}
         {worker.resenas && worker.resenas.length > 0 && (
-          <motion.section variants={itemVariants} className="mb-20">
+          <section className="mb-20">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold flex items-center gap-3">
                 Reseñas de Clientes
@@ -302,9 +297,9 @@ export const WorkerProfile: React.FC<WorkerProfileProps> = ({ workerId, onBack, 
                 </div>
               ))}
             </div>
-          </motion.section>
+          </section>
         )}
-      </motion.main>
+      </main>
 
       {/* Booking Flow Modal */}
       <AnimatePresence>

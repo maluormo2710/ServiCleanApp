@@ -1,8 +1,27 @@
-import React from 'react';
-import { TrendingUp, Users, Wallet, Bell, Star, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { TrendingUp, Users, Wallet, Bell, Star, ArrowUpRight, Search, Filter } from 'lucide-react';
 import { Avatar } from './Avatar';
 
+const mockAdminBookings = [
+  { id: 'RES-001', date: '2023-10-25', time: '10:00 AM', worker: 'Elena Rodriguez', client: 'Juan Perez', status: 'Completada', amount: '$55.00' },
+  { id: 'RES-002', date: '2023-10-26', time: '02:00 PM', worker: 'Sofia Mendez', client: 'Maria Garcia', status: 'Pendiente', amount: '$40.00' },
+  { id: 'RES-003', date: '2023-10-26', time: '09:00 AM', worker: 'Lucia Velez', client: 'Carlos Lopez', status: 'Confirmada', amount: '$65.00' },
+  { id: 'RES-004', date: '2023-10-27', time: '11:00 AM', worker: 'Elena Rodriguez', client: 'Ana Martinez', status: 'Cancelada', amount: '$55.00' },
+  { id: 'RES-005', date: '2023-10-28', time: '03:00 PM', worker: 'Sofia Mendez', client: 'Luis Torres', status: 'Pendiente', amount: '$80.00' },
+];
+
 export const AdminDashboard: React.FC = () => {
+  const [dateFilter, setDateFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [workerFilter, setWorkerFilter] = useState('');
+
+  const filteredBookings = mockAdminBookings.filter(booking => {
+    const matchDate = dateFilter ? booking.date === dateFilter : true;
+    const matchStatus = statusFilter ? booking.status === statusFilter : true;
+    const matchWorker = workerFilter ? booking.worker.toLowerCase().includes(workerFilter.toLowerCase()) : true;
+    return matchDate && matchStatus && matchWorker;
+  });
+
   const kpis = [
     { label: 'Total Reservas (Mes)', value: '1,482', trend: '+12.5%', icon: TrendingUp, color: 'text-teal-600', bg: 'bg-teal-50' },
     { label: 'Usuarios Activos', value: '8,290', trend: '42 nuevos hoy', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
@@ -57,7 +76,7 @@ export const AdminDashboard: React.FC = () => {
           ))}
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
           <div className="lg:col-span-8 card-editorial bg-surface-low">
             <h3 className="text-2xl font-bold mb-8">Reservas Diarias</h3>
             <div className="flex items-end justify-between h-64 gap-4 px-4">
@@ -103,6 +122,85 @@ export const AdminDashboard: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* Bookings Management Section */}
+        <section className="card-editorial">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h3 className="text-2xl font-bold">Gestión de Reservas</h3>
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+              <div className="relative flex-1 md:w-48">
+                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input 
+                  type="text" 
+                  placeholder="Buscar trabajador..." 
+                  value={workerFilter}
+                  onChange={(e) => setWorkerFilter(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 bg-surface-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+              <input 
+                type="date" 
+                value={dateFilter}
+                onChange={(e) => setDateFilter(e.target.value)}
+                className="py-2 px-4 bg-surface-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20"
+              />
+              <select 
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="py-2 px-4 bg-surface-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 appearance-none"
+              >
+                <option value="">Todos los estados</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Completada">Completada</option>
+                <option value="Cancelada">Cancelada</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-slate-100 text-slate-400 text-sm uppercase tracking-wider">
+                  <th className="pb-4 font-bold">ID Reserva</th>
+                  <th className="pb-4 font-bold">Fecha y Hora</th>
+                  <th className="pb-4 font-bold">Trabajador</th>
+                  <th className="pb-4 font-bold">Cliente</th>
+                  <th className="pb-4 font-bold">Monto</th>
+                  <th className="pb-4 font-bold">Estado</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                {filteredBookings.map((booking) => (
+                  <tr key={booking.id} className="border-b border-slate-50 hover:bg-surface-low/50 transition-colors">
+                    <td className="py-4 font-bold text-on-surface">{booking.id}</td>
+                    <td className="py-4 text-on-surface-variant">{booking.date} • {booking.time}</td>
+                    <td className="py-4 font-medium">{booking.worker}</td>
+                    <td className="py-4 text-on-surface-variant">{booking.client}</td>
+                    <td className="py-4 font-bold">{booking.amount}</td>
+                    <td className="py-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                        booking.status === 'Completada' ? 'bg-teal-50 text-teal-700' :
+                        booking.status === 'Confirmada' ? 'bg-blue-50 text-blue-700' :
+                        booking.status === 'Pendiente' ? 'bg-amber-50 text-amber-700' :
+                        'bg-red-50 text-red-700'
+                      }`}>
+                        {booking.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                {filteredBookings.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="py-8 text-center text-slate-400">
+                      No se encontraron reservas con los filtros seleccionados.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
   );

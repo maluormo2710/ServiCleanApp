@@ -6,24 +6,10 @@ import { Booking } from '../types';
 interface BookingsScreenProps {
   bookings: Booking[];
   setBookings: React.Dispatch<React.SetStateAction<Booking[]>>;
+  onNavigateToReport: () => void;
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
-};
-
-export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBookings }) => {
+export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBookings, onNavigateToReport }) => {
   const [expandedBookingId, setExpandedBookingId] = useState<number | null>(null);
   const [ratingBooking, setRatingBooking] = useState<any>(null);
   const [rating, setRating] = useState(0);
@@ -68,37 +54,25 @@ export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBoo
   return (
     <div className="pb-32 pt-20 px-8 max-w-6xl mx-auto">
       <header className="mb-16">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-5xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-4"
-        >
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-4">
           Tu historial de <span className="text-primary">bienestar.</span>
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg text-on-surface-variant max-w-xl leading-relaxed"
-        >
+        </h1>
+        <p className="text-lg text-on-surface-variant max-w-xl leading-relaxed">
           Revisa los servicios realizados, gestiona tus facturas y califica la experiencia de tus limpiezas pasadas.
-        </motion.p>
+        </p>
       </header>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
         <div className="md:col-span-2 bg-surface-low rounded-[2rem] p-8 flex flex-col justify-between overflow-hidden relative group">
           <div className="relative z-10">
             <span className="text-sm font-bold uppercase tracking-widest text-primary mb-2 block">Total Invertido</span>
             <h2 className="text-4xl font-bold">$1,240.00</h2>
           </div>
           <div className="mt-8 relative z-10">
-            <button className="btn-primary flex items-center gap-2">
+            <button 
+              onClick={onNavigateToReport}
+              className="btn-primary flex items-center gap-2"
+            >
               Descargar Reporte Anual
               <Download size={16} />
             </button>
@@ -109,7 +83,7 @@ export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBoo
           <h3 className="text-2xl font-bold text-amber-800">4.9 / 5.0</h3>
           <p className="text-sm text-amber-700 mt-1">Tu calificación promedio como cliente</p>
         </div>
-      </motion.div>
+      </div>
 
       <section className="space-y-10">
         <div className="flex justify-between items-end px-2">
@@ -120,14 +94,9 @@ export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBoo
           </div>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="space-y-4"
-        >
+        <div className="space-y-4">
           {bookings.map((b) => (
-            <motion.div variants={itemVariants} key={b.id} className="card-editorial p-6 transition-all hover:translate-y-[-2px]">
+            <div key={b.id} className="card-editorial p-6 transition-all hover:translate-y-[-2px]">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-5 flex-1">
                   <div className="w-14 h-14 rounded-2xl bg-surface-low flex items-center justify-center text-primary shrink-0">
@@ -228,9 +197,9 @@ export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBoo
                   </div>
                 </div>
               )}
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       {/* Modal de Calificación */}

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
 import { ArrowLeft, Send, MoreVertical, Phone, Video } from 'lucide-react';
 import { dbColaboradores } from '../data';
 import { Avatar } from './Avatar';
@@ -31,7 +30,9 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ workerId, onBack }) => {
   ]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ workerId, onBack }) => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-surface-low">
+    <div className="flex flex-col h-[100dvh] bg-surface-low overflow-hidden">
       {/* Header */}
       <header className="bg-white px-6 py-4 flex items-center justify-between border-b border-slate-100 shadow-sm z-10 sticky top-0">
         <div className="flex items-center gap-4">
@@ -110,10 +111,8 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ workerId, onBack }) => {
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
-            <motion.div 
+            <div 
               key={msg.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
               className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
             >
               {!isUser && (
@@ -133,7 +132,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ workerId, onBack }) => {
                   {msg.time}
                 </p>
               </div>
-            </motion.div>
+            </div>
           );
         })}
         <div ref={messagesEndRef} />

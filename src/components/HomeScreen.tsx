@@ -1,118 +1,104 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
 import { dbColaboradores } from '../data';
 import { Avatar } from './Avatar';
 import { Star, MapPin, Search } from 'lucide-react';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+interface HomeScreenProps {
+  onSelectWorker: (id: number) => void;
+  onNavigateToMap: () => void;
+}
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
-};
+export const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectWorker, onNavigateToMap }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-export const HomeScreen: React.FC<{ onSelectWorker: (id: number) => void }> = ({ onSelectWorker }) => {
+  const filteredWorkers = dbColaboradores.filter(worker => 
+    worker.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    worker.especialidad.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="pb-32">
       <header className="pt-20 px-8 mb-12">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-5xl font-extrabold tracking-tight text-on-surface mb-4 leading-tight"
-        >
+        <h1 className="text-5xl font-extrabold tracking-tight text-on-surface mb-4 leading-tight">
           Encuentra la frescura <br />
           <span className="text-primary">que tu hogar merece.</span>
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-on-surface-variant text-lg max-w-xl mb-10 leading-relaxed"
-        >
+        </h1>
+        <p className="text-on-surface-variant text-lg max-w-xl mb-10 leading-relaxed">
           Reserva profesionales verificados para una limpieza profunda y garantizada en minutos.
-        </motion.p>
+        </p>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="bg-white p-2 rounded-[2.5rem] shadow-editorial flex flex-col md:flex-row items-center gap-2"
-        >
+        <div className="bg-white p-2 rounded-[2.5rem] shadow-editorial flex flex-col md:flex-row items-center gap-2">
           <div className="flex-1 flex items-center gap-4 px-6 py-4 rounded-full bg-surface-low w-full">
             <Search size={20} className="text-primary" />
             <input 
               type="text" 
               placeholder="¿Qué necesitas limpiar?" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-transparent border-none p-0 text-base font-semibold focus:ring-0 placeholder:text-slate-400 w-full"
             />
           </div>
           <button className="btn-primary w-full md:w-auto">
             Buscar
           </button>
-        </motion.div>
+        </div>
       </header>
 
       <section className="px-8">
         <div className="flex justify-between items-end mb-8">
           <h2 className="text-2xl font-bold tracking-tight">Limpiadores Disponibles</h2>
-          <button className="text-sm font-semibold text-primary hover:underline">
+          <button 
+            onClick={onNavigateToMap}
+            className="text-sm font-semibold text-primary hover:underline"
+          >
             Ver mapa
           </button>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
-          {dbColaboradores.map((worker) => (
-            <motion.div 
-              variants={itemVariants}
-              key={worker.id}
-              onClick={() => onSelectWorker(worker.id)}
-              className="bg-white rounded-[2rem] p-6 flex items-start gap-6 hover:shadow-ghost transition-all cursor-pointer group"
-            >
-              <Avatar 
-                src={worker.avatarUrl} 
-                name={worker.nombre} 
-                className="w-24 h-24 rounded-2xl flex-shrink-0"
-              />
-              <div className="flex-1 flex flex-col gap-2">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                    {worker.nombre}
-                  </h3>
-                  <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg">
-                    <Star size={14} className="fill-amber-500 text-amber-500" />
-                    <span className="text-xs font-black text-amber-700">{worker.calificacion}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredWorkers.length > 0 ? (
+            filteredWorkers.map((worker) => (
+              <div 
+                key={worker.id}
+                onClick={() => onSelectWorker(worker.id)}
+                className="bg-white rounded-[2rem] p-6 flex items-start gap-6 hover:shadow-ghost transition-all cursor-pointer group"
+              >
+                <Avatar 
+                  src={worker.avatarUrl} 
+                  name={worker.nombre} 
+                  className="w-24 h-24 rounded-2xl flex-shrink-0"
+                />
+                <div className="flex-1 flex flex-col gap-2">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                      {worker.nombre}
+                    </h3>
+                    <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg">
+                      <Star size={14} className="fill-amber-500 text-amber-500" />
+                      <span className="text-xs font-black text-amber-700">{worker.calificacion}</span>
+                    </div>
                   </div>
-                </div>
-                <p className="text-sm text-on-surface-variant line-clamp-1">
-                  {worker.especialidad}
-                </p>
-                <div className="mt-2 flex items-center justify-between">
-                  <div>
-                    <span className="text-lg font-extrabold text-primary">${worker.tarifaHora}</span>
-                    <span className="text-xs font-medium text-slate-400">/hr</span>
+                  <p className="text-sm text-on-surface-variant line-clamp-1">
+                    {worker.especialidad}
+                  </p>
+                  <div className="mt-2 flex items-center justify-between">
+                    <div>
+                      <span className="text-lg font-extrabold text-primary">${worker.tarifaHora}</span>
+                      <span className="text-xs font-medium text-slate-400">/hr</span>
+                    </div>
+                    <button className="text-primary text-xs font-bold px-4 py-2 rounded-full bg-surface-low hover:bg-primary/10 transition-colors">
+                      Ver Perfil
+                    </button>
                   </div>
-                  <button className="text-primary text-xs font-bold px-4 py-2 rounded-full bg-surface-low hover:bg-primary/10 transition-colors">
-                    Ver Perfil
-                  </button>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-on-surface-variant text-lg">No se encontraron colaboradores que coincidan con tu búsqueda.</p>
+            </div>
+          )}
+        </div>
       </section>
     </div>
   );

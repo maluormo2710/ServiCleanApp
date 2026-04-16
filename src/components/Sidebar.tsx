@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, CreditCard, MapPin, MessageSquare, Settings, Shield, LogOut, X } from 'lucide-react';
+import { Calendar, CreditCard, MapPin, MessageSquare, Settings, Shield, LogOut, X, Tag } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -13,6 +13,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate })
     { id: 'payment-methods', label: 'Métodos de Pago', icon: CreditCard },
     { id: 'addresses', label: 'Direcciones', icon: MapPin },
     { id: 'support', label: 'Soporte', icon: MessageSquare },
+    { id: 'promotions', label: 'Promociones', icon: Tag },
     { id: 'settings', label: 'Configuración', icon: Settings },
     { id: 'admin', label: 'Panel Admin', icon: Shield },
   ];
