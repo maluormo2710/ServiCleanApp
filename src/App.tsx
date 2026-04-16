@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { HomeScreen } from './components/HomeScreen';
 import { WorkerProfile } from './components/WorkerProfile';
@@ -13,10 +13,11 @@ import { PaymentMethodsScreen } from './components/PaymentMethodsScreen';
 import { SupportScreen } from './components/SupportScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { ProfileScreen } from './components/ProfileScreen';
-import { Booking, Address, PaymentMethod } from './types';
-import { Menu } from 'lucide-react';
+import { ChatScreen } from './components/ChatScreen';
+import { Booking, Address, PaymentMethod, AppNotification, NotificationSettings } from './types';
+import { Menu, X, Sparkles, Clock, CreditCard, Bell } from 'lucide-react';
 
-type Screen = 'login' | 'home' | 'worker-profile' | 'bookings' | 'notifications' | 'profile' | 'admin' | 'addresses' | 'payment-methods' | 'support' | 'settings';
+type Screen = 'login' | 'home' | 'worker-profile' | 'bookings' | 'notifications' | 'profile' | 'admin' | 'addresses' | 'payment-methods' | 'support' | 'settings' | 'chat';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
@@ -29,6 +30,64 @@ export default function App() {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([
     { id: '1', brand: 'Visa', last4: '4242', name: 'Mi Tarjeta Principal' }
   ]);
+
+  const [notificationSettings, setNotificationSettings] = useState<NotificationSettings>({
+    push: true,
+    email: true,
+    sms: false,
+    promos: true
+  });
+
+  const [notifications, setNotifications] = useState<AppNotification[]>([
+    {
+      id: '1',
+      title: '¡Reserva Confirmada!',
+      desc: 'Tu servicio de limpieza profunda para mañana a las 09:00 AM ha sido asignado a Elena Gómez.',
+      time: 'Hace 5 min',
+      iconType: 'sparkles',
+      color: 'bg-primary-light',
+      unread: true
+    },
+    {
+      id: '2',
+      title: 'Recordatorio',
+      desc: 'No olvides calificar tu último servicio realizado el pasado martes. Tu opinión nos ayuda a mejorar.',
+      time: 'Hace 2 horas',
+      iconType: 'clock',
+      color: 'bg-surface-low',
+      unread: false
+    },
+    {
+      id: '3',
+      title: 'Pago Procesado',
+      desc: 'Hemos recibido correctamente el pago de tu suscripción mensual Premium.',
+      time: 'Ayer',
+      iconType: 'credit-card',
+      color: 'bg-surface-low',
+      unread: false
+    }
+  ]);
+
+  const [activeToast, setActiveToast] = useState<AppNotification | null>(null);
+
+  const triggerPushNotification = (notification: Omit<AppNotification, 'id' | 'time' | 'unread'>) => {
+    if (!notificationSettings.push) return; // Do not show if push is disabled
+    
+    const newNotification: AppNotification = {
+      ...notification,
+      id: Date.now().toString(),
+      time: 'Ahora mismo',
+      unread: true
+    };
+    
+    setNotifications(prev => [newNotification, ...prev]);
+    setActiveToast(newNotification);
+    
+    // Auto-hide toast after 5 seconds
+    setTimeout(() => {
+      setActiveToast(null);
+    }, 5000);
+  };
 
   const [bookings, setBookings] = useState<Booking[]>([
     {
@@ -91,6 +150,14 @@ export default function App() {
     };
     setBookings([newBooking, ...bookings]);
     setCurrentScreen('bookings');
+    
+    // Trigger push notification for booking confirmation
+    triggerPushNotification({
+      title: '¡Reserva Confirmada!',
+      desc: `Tu servicio con ${newBooking.worker} ha sido agendado para el ${newBooking.date} a las ${newBooking.time}.`,
+      iconType: 'sparkles',
+      color: 'bg-primary-light'
+    });
   };
 
   const renderScreen = () => {
@@ -107,13 +174,19 @@ export default function App() {
             onAddBooking={handleAddBooking}
             addresses={addresses}
             paymentMethods={paymentMethods}
+            onNavigateToChat={(id) => { setSelectedWorkerId(id); setCurrentScreen('chat'); }}
           />;
+        }
+        return <HomeScreen onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} />;
+      case 'chat':
+        if (selectedWorkerId) {
+          return <ChatScreen workerId={selectedWorkerId} onBack={() => setCurrentScreen('worker-profile')} />;
         }
         return <HomeScreen onSelectWorker={(id) => { setSelectedWorkerId(id); setCurrentScreen('worker-profile'); }} />;
       case 'bookings':
         return <BookingsScreen bookings={bookings} setBookings={setBookings} />;
       case 'notifications':
-        return <NotificationsScreen />;
+        return <NotificationsScreen notifications={notifications} />;
       case 'admin':
         return <AdminDashboard />;
       case 'addresses':
@@ -123,7 +196,7 @@ export default function App() {
       case 'support':
         return <SupportScreen />;
       case 'settings':
-        return <SettingsScreen />;
+        return <SettingsScreen settings={notificationSettings} setSettings={setNotificationSettings} />;
       case 'profile':
         return <ProfileScreen onNavigate={(screen) => setCurrentScreen(screen as Screen)} />;
       default:
@@ -131,11 +204,43 @@ export default function App() {
     }
   };
 
-  const showHamburger = !['login', 'worker-profile'].includes(currentScreen);
+  const showHamburger = !['login', 'worker-profile', 'chat'].includes(currentScreen);
   const showAvatar = ['home', 'bookings', 'notifications', 'support'].includes(currentScreen);
+
+  const renderIcon = (type: string) => {
+    switch (type) {
+      case 'sparkles': return <Sparkles size={20} className="text-white" />;
+      case 'clock': return <Clock size={20} className="text-white" />;
+      case 'credit-card': return <CreditCard size={20} className="text-white" />;
+      default: return <Bell size={20} className="text-white" />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {activeToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.9 }}
+            className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md bg-white rounded-2xl shadow-2xl p-4 flex items-start gap-4 border border-slate-100"
+          >
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${activeToast.color}`}>
+              {renderIcon(activeToast.iconType)}
+            </div>
+            <div className="flex-1 pt-1">
+              <h4 className="font-bold text-on-surface text-sm">{activeToast.title}</h4>
+              <p className="text-xs text-on-surface-variant mt-1 line-clamp-2">{activeToast.desc}</p>
+            </div>
+            <button onClick={() => setActiveToast(null)} className="p-1 text-slate-400 hover:text-on-surface">
+              <X size={16} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {showHamburger && (
         <button 
           onClick={() => setIsSidebarOpen(true)}
@@ -173,7 +278,7 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
       
-      {currentScreen !== 'login' && currentScreen !== 'worker-profile' && (
+      {currentScreen !== 'login' && currentScreen !== 'worker-profile' && currentScreen !== 'chat' && (
         <BottomNav activeTab={currentScreen} onTabChange={(screen) => setCurrentScreen(screen as Screen)} />
       )}
     </div>

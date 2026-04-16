@@ -190,13 +190,22 @@ export const BookingsScreen: React.FC<BookingsScreenProps> = ({ bookings, setBoo
                       </ul>
                       
                       <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Tareas incluidas</h5>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {b.details?.tasks?.map((t, i) => (
                           <span key={i} className="px-3 py-1.5 bg-surface-low text-xs font-bold text-on-surface-variant rounded-full">
                             {t}
                           </span>
                         ))}
                       </div>
+
+                      {b.details?.comments && (
+                        <>
+                          <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Comentarios</h5>
+                          <div className="bg-amber-50 p-4 rounded-2xl text-sm text-amber-800 italic">
+                            "{b.details.comments}"
+                          </div>
+                        </>
+                      )}
                     </div>
                     
                     <div className="bg-surface-low p-6 rounded-3xl h-fit">

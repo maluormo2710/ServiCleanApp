@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Bell, Smartphone, Mail, Tag } from 'lucide-react';
+import { NotificationSettings } from '../types';
 
-export const SettingsScreen: React.FC = () => {
-  const [settings, setSettings] = useState({
-    push: true,
-    email: true,
-    sms: false,
-    promos: true
-  });
+interface SettingsScreenProps {
+  settings: NotificationSettings;
+  setSettings: React.Dispatch<React.SetStateAction<NotificationSettings>>;
+}
 
-  const toggle = (key: keyof typeof settings) => {
+export const SettingsScreen: React.FC<SettingsScreenProps> = ({ settings, setSettings }) => {
+  const toggle = (key: keyof NotificationSettings) => {
     setSettings(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -43,10 +42,10 @@ export const SettingsScreen: React.FC = () => {
                 </div>
               </div>
               <button 
-                onClick={() => toggle(opt.id as keyof typeof settings)}
-                className={`w-14 h-8 rounded-full transition-colors relative shrink-0 ${settings[opt.id as keyof typeof settings] ? 'bg-primary' : 'bg-slate-200'}`}
+                onClick={() => toggle(opt.id as keyof NotificationSettings)}
+                className={`w-14 h-8 rounded-full transition-colors relative shrink-0 ${settings[opt.id as keyof NotificationSettings] ? 'bg-primary' : 'bg-slate-200'}`}
               >
-                <div className={`w-6 h-6 bg-white rounded-full absolute top-1 transition-transform shadow-sm ${settings[opt.id as keyof typeof settings] ? 'left-7' : 'left-1'}`} />
+                <div className={`w-6 h-6 bg-white rounded-full absolute top-1 transition-transform shadow-sm ${settings[opt.id as keyof NotificationSettings] ? 'left-7' : 'left-1'}`} />
               </button>
             </div>
           ))}

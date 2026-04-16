@@ -24,7 +24,25 @@ export interface Booking {
     duration: string;
     address: string;
     tasks: string[];
+    comments?: string;
     subtotal: string;
     tax: string;
   };
+}
+
+export interface AppNotification {
+  id: string;
+  title: string;
+  desc: string;
+  time: string;
+  iconType: 'sparkles' | 'clock' | 'credit-card' | 'bell';
+  color: string;
+  unread: boolean;
+}
+
+export interface NotificationSettings {
+  push: boolean;
+  email: boolean;
+  sms: boolean;
+  promos: boolean;
 }
