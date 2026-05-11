@@ -2,8 +2,8 @@ node_modules/
 build/
 dist/
 coverage/
+Documentacion-ServiClean/
 .DS_Store
 *.log
 .env*
 !.env.example
-Documentacion-ServiClean/
