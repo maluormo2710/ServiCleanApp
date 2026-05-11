@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ServiClean - Panel de Notificaciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "primary-fixed-dim": "#76d6d5",
+              "background": "#f8f9fa",
+              "secondary-container": "#0070ea",
+              "surface": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "primary-fixed": "#93f2f2",
+              "primary": "#006565",
+              "on-surface": "#191c1d",
+              "tertiary": "#924400",
+              "surface-container-high": "#e7e8e9",
+              "outline-variant": "#bdc9c8",
+              "on-surface-variant": "#3e4949",
+              "error": "#ba1a1a",
+              "outline": "#6e7979",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1d",
+              "on-secondary-fixed-variant": "#004493",
+              "on-primary-container": "#e3fffe",
+              "primary-container": "#008080",
+              "on-secondary-fixed": "#001a41",
+              "surface-container-low": "#f3f4f5",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed-variant": "#004f4f",
+              "secondary-fixed-dim": "#adc7ff",
+              "inverse-on-surface": "#f0f1f2",
+              "on-tertiary-fixed": "#321300",
+              "surface-tint": "#006a6a",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-primary": "#76d6d5",
+              "on-tertiary-container": "#fff8f6",
+              "secondary-fixed": "#d8e2ff",
+              "secondary": "#0059bb",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed": "#ffdbc8",
+              "tertiary-fixed-dim": "#ffb68a",
+              "surface-variant": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed": "#002020",
+              "tertiary-container": "#b85700"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 12px 32px rgba(0, 101, 101, 0.06);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md docked full-width top-0 sticky z-50 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-teal-600 dark:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-2xl font-extrabold text-teal-700 dark:text-teal-400 tracking-tighter">ServiClean</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Foto de perfil del usuario" class="w-full h-full object-cover" data-alt="close-up portrait of a professional smiling man in a clean office setting with soft natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUz95-pIkrnEFkWjy9Gt5wFX4a_ndoZ0dwwRJAfXqzPJ5o4w6BzBgRTBlmByC7ZYypZRQykE1qATwWtyIJWQVsxaeAZn53B-5gY8DGL1_G3RhJajw6jVb9xZz2l7EDSNRzJ364W95Os4b3_4zlMtrg8lmjNcj0TcAuwj-Kax54EvZ8E2VJxq88hdZgY_tT5wZK9qnuO6ORdICcK_XOqAG2VCZA7o0py0f21RirKyOg9KLreMjpqqv9f2YnhORPRtQ70QPt_H2DDd8"/>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-12 pb-32">
+<!-- Editorial Header Section -->
+<section class="mb-12">
+<h1 class="text-5xl font-extrabold text-on-surface tracking-tight leading-tight mb-2">Notificaciones</h1>
+<p class="text-on-surface-variant text-lg max-w-xl leading-relaxed">
+                Mantente al tanto de tus servicios de limpieza y actualizaciones de cuenta en tiempo real.
+            </p>
+</section>
+<!-- Notification List (Asymmetric Layout) -->
+<div class="space-y-6">
+<!-- Notification Group: Reciente -->
+<div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+<div class="md:w-1/4 pt-2">
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider text-teal-600 px-3 py-1 bg-teal-50 rounded-full">Reciente</span>
+</div>
+<div class="md:w-3/4 w-full space-y-4">
+<!-- Unread Notification Card -->
+<div class="bg-surface-container-lowest editorial-shadow rounded-xl p-6 relative overflow-hidden transition-all hover:translate-x-1 border-l-4 border-primary">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-on-surface leading-snug">¡Reserva Confirmada!</h3>
+<span class="text-xs text-outline font-medium">Hace 5 min</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+                                    Tu servicio de limpieza profunda para mañana a las 09:00 AM ha sido asignado a Elena Gómez.
+                                </p>
+<div class="flex gap-3">
+<button class="bg-primary hover:bg-primary-container text-on-primary text-xs font-bold py-2 px-4 rounded-full transition-all active:scale-95">
+                                        Ver Detalles
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Read Notification Card -->
+<div class="bg-surface-container-low rounded-xl p-6 transition-all hover:bg-surface-container-highest">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-on-surface leading-snug">Recordatorio</h3>
+<span class="text-xs text-outline font-medium">Hace 2 horas</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                    No olvides calificar tu último servicio realizado el pasado martes. Tu opinión nos ayuda a mejorar.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Group: Anterior -->
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="md:w-1/4 pt-2">
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider text-outline px-3 py-1 bg-surface-container-high rounded-full">Anteriores</span>
+</div>
+<div class="md:w-3/4 w-full space-y-4">
+<!-- Read Notification Card -->
+<div class="bg-surface-container-low rounded-xl p-6 transition-all hover:bg-surface-container-highest">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-on-surface leading-snug">Pago Procesado</h3>
+<span class="text-xs text-outline font-medium">Ayer</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                    Hemos recibido correctamente el pago de tu suscripción mensual Premium.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Another Read Notification Card -->
+<div class="bg-surface-container-low rounded-xl p-6 transition-all hover:bg-surface-container-highest">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">cleaning_services</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-on-surface leading-snug">Servicio Finalizado</h3>
+<span class="text-xs text-outline font-medium">Lunes</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                    El servicio de limpieza en Calle 123 ha concluido con éxito. ¡Gracias por confiar en ServiClean!
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Section (Bento style) -->
+<section class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-secondary-container rounded-3xl p-8 text-on-secondary-container flex flex-col justify-between aspect-video md:aspect-auto">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-2 block">Promoción</span>
+<h2 class="text-3xl font-extrabold leading-tight mb-4">Refiere y Gana</h2>
+<p class="opacity-90 max-w-xs">Invita a un amigo y ambos recibirán un 20% de descuento en su próxima limpieza.</p>
+</div>
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-md w-fit px-6 py-2 rounded-full font-bold text-sm transition-all">Compartir enlace</button>
+</div>
+<div class="bg-tertiary-fixed rounded-3xl p-8 text-on-tertiary-fixed flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<h2 class="text-3xl font-extrabold leading-tight mb-4">Soporte VIP</h2>
+<p class="opacity-90 max-w-xs">¿Tienes dudas con tu notificación? Chatea con nosotros ahora.</p>
+</div>
+<button class="bg-tertiary text-on-tertiary w-fit px-6 py-2 rounded-full font-bold text-sm relative z-10">Hablar con Admin</button>
+<div class="absolute -right-8 -bottom-8 opacity-20">
+<span class="material-symbols-outlined text-[160px]">support_agent</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl shadow-[0_-12px_32px_rgba(0,101,101,0.06)] rounded-t-[2rem] border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400" href="#">
+<span class="material-symbols-outlined">cleaning_services</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1">Servicios</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-2xl px-5 py-2 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1">Notificaciones</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1">Perfil</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,43 @@
+1. Identidad y Diseño Visual
+
+[ ] Marca: ¿Se utiliza la paleta de colores oficial y el logo de ServiClean de forma consistente en la cabecera (header) de todas las vistas?
+
+[ ] Percepción: ¿El diseño visual transmite limpieza, orden y confianza (elementos vitales para una app de servicios domésticos)?
+
+--------------------------------------------------
+
+2. Accesibilidad y Ergonomía (Validación RF-05)
+
+[ ] Legibilidad: ¿El tamaño de la tipografía base es de al menos 14px/16px para asegurar la lectura sin esfuerzo en dispositivos móviles?
+
+[ ] Áreas Táctiles: ¿Los botones de acción principal ("Buscar", "Reservar", "Pagar") tienen el tamaño suficiente para ser tocados fácilmente en una pantalla de celular sin presionar elementos adyacentes?
+
+[ ] Contraste: ¿El texto sobre los fondos de color tiene suficiente contraste para ser leído en condiciones de alta luminosidad (ej. usándolo en la calle)?
+
+--------------------------------------------------
+
+3. Consistencia de Datos y Formularios
+
+[ ] Formatos Monetarios: ¿Las pantallas que involucran tarifas o la vista frm_checkout_pago muestran claramente los valores en pesos colombianos (COP) con sus separadores de miles?
+
+[ ] Restricción Visual: ¿El componente de calificación de la vista modal_calificacion_servicio restringe visualmente la entrada a un máximo de 5 estrellas, evitando que el usuario intente ingresar valores numéricos erróneos?
+
+[ ] Privacidad: ¿Los campos de contraseña en la vista view_login_registro están enmascarados por defecto (puntos/asteriscos) e incluyen un ícono para "ver/ocultar" la contraseña?
+
+--------------------------------------------------
+
+4. Flujos, Navegación y Prevención de Errores
+
+[ ] Salidas Claras: ¿Existe en todo momento un botón visible de "Atrás", "Cancelar" o una "X" para abandonar procesos largos (como reservas o pagos) sin sentirse atrapado?
+
+[ ] Seguridad de Cuenta: ¿Hay un botón de "Cerrar Sesión" fácilmente localizable en el área de frm_perfil_usuario para proteger los datos en dispositivos compartidos?
+
+[ ] Gestión de Vacíos (Empty States): Si un cliente busca una empleada y no hay nadie en ese horario, ¿el diseño contempla una pantalla amigable que explique el problema e invite a cambiar el filtro, en lugar de dejar la pantalla en blanco?
+
+--------------------------------------------------
+
+5. Indicadores de Estado y Confianza
+
+[ ] Certidumbre de Pago: ¿La vista de checkout muestra íconos de seguridad (candados, logos de pasarelas de pago) para transmitir confianza en el manejo de tarjetas?
+
+[ ] Retroalimentación (Feedback): ¿Se han diseñado indicadores visuales (loaders/spinners) para que el usuario sepa que el sistema está "cargando" mientras procesa una búsqueda o un pago?

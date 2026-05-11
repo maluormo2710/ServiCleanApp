@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "primary-fixed-dim": "#76d6d5",
+              "background": "#f8f9fa",
+              "secondary-container": "#0070ea",
+              "surface": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "primary-fixed": "#93f2f2",
+              "primary": "#006565",
+              "on-surface": "#191c1d",
+              "tertiary": "#924400",
+              "surface-container-high": "#e7e8e9",
+              "outline-variant": "#bdc9c8",
+              "on-surface-variant": "#3e4949",
+              "error": "#ba1a1a",
+              "outline": "#6e7979",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1d",
+              "on-secondary-fixed-variant": "#004493",
+              "on-primary-container": "#e3fffe",
+              "primary-container": "#008080",
+              "on-secondary-fixed": "#001a41",
+              "surface-container-low": "#f3f4f5",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed-variant": "#004f4f",
+              "secondary-fixed-dim": "#adc7ff",
+              "inverse-on-surface": "#f0f1f2",
+              "on-tertiary-fixed": "#321300",
+              "surface-tint": "#006a6a",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-primary": "#76d6d5",
+              "on-tertiary-container": "#fff8f6",
+              "secondary-fixed": "#d8e2ff",
+              "secondary": "#0059bb",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed": "#ffdbc8",
+              "tertiary-fixed-dim": "#ffb68a",
+              "surface-variant": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed": "#002020",
+              "tertiary-container": "#b85700"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+        color: #191c1d;
+      }
+      h1, h2, h3 {
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- Navigation Drawer (SideNav) -->
+<aside class="h-full w-72 fixed left-0 top-0 border-r border-slate-200 bg-slate-50 flex flex-col p-6 overflow-y-auto z-40">
+<div class="text-xl font-black text-teal-700 mb-8">ServiClean</div>
+<!-- Profile Header -->
+<div class="flex items-center gap-4 mb-10">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+<img alt="Avatar de Administrador" class="w-full h-full object-cover" data-alt="Professional headshot of a smiling executive man in a modern office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjVEqb6C0be5pL_HFGEI39Bbwc-Sen6V_SjDgTDZTvfkuBks734D-PUX5jVp9rKtxv69F-QYPVJr2NgSMAxJe1fPNI1e5SJjYBSpSOCG9J-3JWSc1bVZWFbkP0sztSxDWnlmm3TuPmoPFHDBrUHeCCdbIQBoOwMgtG4bZjT2Z2XsNmp9nqDNaDJMixGFDi4TOGfqhTJEkfwqvbK4jYG4VF0fpGjWfFKPHkejAI0IzIVVIRuHkA7JVRtVK9zdqVWY6F58j6o5PMYCc"/>
+</div>
+<div>
+<p class="font-manrope text-sm font-bold text-on-surface">Admin ServiClean</p>
+<p class="text-xs text-slate-500">Panel de Control</p>
+<p class="text-[10px] text-teal-600 font-bold uppercase tracking-tighter mt-0.5">Colombia</p>
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="space-y-2">
+<a class="bg-teal-600 text-white rounded-r-full font-bold shadow-lg shadow-teal-500/20 flex items-center gap-3 px-4 py-3 -ml-6 pl-10 transition-transform active:brightness-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-sm">Métricas</span>
+</a>
+<a class="text-slate-600 hover:bg-slate-200 flex items-center gap-3 px-4 py-3 rounded-xl transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-manrope text-sm">Limpiadores</span>
+</a>
+<a class="text-slate-600 hover:bg-slate-200 flex items-center gap-3 px-4 py-3 rounded-xl transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-manrope text-sm">Clientes</span>
+</a>
+<a class="text-slate-600 hover:bg-slate-200 flex items-center gap-3 px-4 py-3 rounded-xl transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-manrope text-sm">Finanzas</span>
+</a>
+<a class="text-slate-600 hover:bg-slate-200 flex items-center gap-3 px-4 py-3 rounded-xl transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-sm">Configuración</span>
+</a>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-72 flex-1 p-8 lg:p-12">
+<!-- TopAppBar Context -->
+<header class="flex justify-between items-center w-full mb-12">
+<div>
+<h1 class="text-3xl font-extrabold text-teal-700 tracking-tighter">Dashboard Operativo</h1>
+<p class="text-slate-500 text-sm mt-1">Resumen de métricas y rendimiento del sistema.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-teal-50 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-teal-100 p-0.5">
+<img alt="Foto de perfil del usuario" class="w-full h-full object-cover rounded-full" data-alt="Professional profile picture of a business person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4iCoRxZJopta7lzWXBDGwUj4LhlKkqiMgEKqG6-UwsPy3XneLRh57GZTirL5RUdib1MRphWppQjIX2puZa4IJCdj9kYJnaAcuyQC69KcfC86nWG7nCVQ6peMQtQLyGXARHF1WQEA_nbezfrCLcfBzW3EScb7vBGQcxAMk1WpRxUT-2qhzynp14TXofo2UWArqZOp7BLuHQd9zRJdHa8LT8hoNCg6P_3mAeqO502e6ppXJlBFbzT7-pFwFRBR0iZyOjK6XjKhvEjM"/>
+</div>
+</div>
+</header>
+<!-- KPI Grid: Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-[0_12px_32px_rgba(0,101,101,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Total Reservas (Mes)</p>
+<h2 class="text-4xl font-extrabold text-teal-700 tracking-tighter">1,482</h2>
+<div class="mt-4 flex items-center gap-2 text-primary font-semibold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span>+12.5% vs mes anterior</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-[0_12px_32px_rgba(0,101,101,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Usuarios Activos</p>
+<h2 class="text-4xl font-extrabold text-secondary tracking-tighter">8,290</h2>
+<div class="mt-4 flex items-center gap-2 text-secondary font-semibold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
+<span>42 nuevos hoy</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-[0_12px_32px_rgba(0,101,101,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-fixed/30 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Ingresos Retenidos</p>
+<h2 class="text-4xl font-extrabold text-tertiary tracking-tighter">$14,500</h2>
+<div class="mt-4 flex items-center gap-2 text-tertiary font-semibold text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>En custodia de pagos</span>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Asymmetric Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Reservations Chart: Left Column (Large) -->
+<section class="lg:col-span-8 space-y-8">
+<div class="bg-surface-container-low p-8 rounded-[2.5rem] relative">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h3 class="text-2xl font-bold text-on-surface tracking-tight">Reservas Diarias</h3>
+<p class="text-slate-500 text-sm">Monitoreo de actividad de los últimos 7 días</p>
+</div>
+<div class="flex gap-2">
+<span class="px-4 py-1.5 bg-white text-xs font-bold rounded-full shadow-sm text-teal-700">Semanal</span>
+<span class="px-4 py-1.5 text-xs font-bold rounded-full text-slate-400">Mensual</span>
+</div>
+</div>
+<!-- Custom Bar Chart UI -->
+<div class="flex items-end justify-between h-64 gap-4 px-4">
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-100 rounded-t-xl transition-all hover:bg-teal-200" style="height: 40%;"></div>
+<span class="text-[10px] font-bold text-slate-400">LUN</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-200 rounded-t-xl transition-all hover:bg-teal-300" style="height: 65%;"></div>
+<span class="text-[10px] font-bold text-slate-400">MAR</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-100 rounded-t-xl transition-all hover:bg-teal-200" style="height: 55%;"></div>
+<span class="text-[10px] font-bold text-slate-400">MIE</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-600 rounded-t-xl transition-all hover:brightness-110 shadow-lg shadow-teal-500/20" style="height: 90%;"></div>
+<span class="text-[10px] font-bold text-teal-700">JUE</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-100 rounded-t-xl transition-all hover:bg-teal-200" style="height: 45%;"></div>
+<span class="text-[10px] font-bold text-slate-400">VIE</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-100 rounded-t-xl transition-all hover:bg-teal-200" style="height: 30%;"></div>
+<span class="text-[10px] font-bold text-slate-400">SAB</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="w-full bg-teal-100 rounded-t-xl transition-all hover:bg-teal-200" style="height: 20%;"></div>
+<span class="text-[10px] font-bold text-slate-400">DOM</span>
+</div>
+</div>
+</div>
+<!-- Featured Section: Brand Image -->
+<div class="relative h-64 rounded-[2.5rem] overflow-hidden group">
+<img alt="Interior de casa limpia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Interior of a modern sun-drenched living room with minimalist furniture, perfectly clean surfaces, and soft airy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0f4AlLtlgO9sNvFLl6Tr4wYCirYDQ1CLs08dHE3ErJgENWGREejEH_Ly8RDMIgANgqlgWxNcWANCclPCeKvfAj2Mqs5LSbAOBOZW6ttJPs9EKEVupR4cz8uiTVTJgSqUXmyfvI5dr7yrpdc-dCybigNSV5DIlaIEHop9Hk0s6mSO9eBmm_0OykVRVvWX_dJas9LohFnwNL2a2GK4iLlI5tUx_t-4be2YmjayDNG3vtk2vl-7cXD2qoU7GlG3sdxL6SEhBrqw16zs"/>
+<div class="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-transparent flex flex-col justify-center p-12">
+<h3 class="text-white text-3xl font-extrabold tracking-tighter mb-2">Excelencia en el Servicio</h3>
+<p class="text-teal-50 text-sm max-w-xs">Mantén los estándares de calidad monitoreando las valoraciones de los clientes en tiempo real.</p>
+</div>
+</div>
+</section>
+<!-- Top Colaboradoras: Right Column (Narrow) -->
+<section class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container-lowest p-8 rounded-[2.5rem] shadow-[0_12px_32px_rgba(0,101,101,0.06)] border border-slate-50">
+<div class="mb-8">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Top Colaboradoras</h3>
+<p class="text-slate-400 text-xs mt-1">Líderes en satisfacción del cliente</p>
+</div>
+<div class="space-y-6">
+<!-- Colaboradora 1 -->
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover" data-alt="Close-up portrait of a friendly professional cleaning worker woman with a warm smile and professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhEfV6u9CmseICmRWWqp50vqbgtXJE7o3R0IktMJAiAjo1hL8n5ZIhAfRIepJs6O9njdQHIf5Q5ekPKAcC5OcgUFtIfX_Q3ky8J-QsqkMqypS3j19c0AFBcUYauVmdD0vjgWqHYqGBv3YfuhHPucUeSt1jB7TWmgd53w9geHTGECROf9T2rWEQFNd20FZFzu2PzLQibxAuEqypJc8k9eEHT7gNl2ckTcrl7621ZE4UuIpgW5QUD7cMskVHpVqd0EsFNWOISqQbF7k"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface group-hover:text-teal-600 transition-colors">Elena Rodriguez</p>
+<p class="text-[10px] text-slate-400 font-medium">92 Reservas</p>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-tertiary-fixed/40 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-tertiary">4.9</span>
+</div>
+</div>
+<!-- Colaboradora 2 -->
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="Sofia Mendez" class="w-full h-full object-cover" data-alt="Headshot of a smiling young woman professional in service industry with bright natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRu_p-O14-fjIx_LR0xis7Q2NaJLJRPTzxYbPaeDMwgsB6biCpETO3DLUwun8RLG_rIwEtwk0UEdDuWe7xG5l3Xh3Tq-RjX4aIIUiJo_xdYePDYLkl3DHntx7MpPhhcFp9gHqHnMjsYFHMX042E0Zb7Y-OYlEVqPpLvho4bUc5c4mQAf7F9DFhNJi1P5m5MupTsnH3ezOdJATxt0eW_14T1-IQlCf-162kKnn46_9ti6GU9tceELUOgb2HYpXHLaKmNA3dZ19Wl6I"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface group-hover:text-teal-600 transition-colors">Sofia Mendez</p>
+<p class="text-[10px] text-slate-400 font-medium">85 Reservas</p>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-tertiary-fixed/40 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-tertiary">4.8</span>
+</div>
+</div>
+<!-- Colaboradora 3 -->
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="Lucia Velez" class="w-full h-full object-cover" data-alt="Portrait of a confident professional female employee smiling, bright office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2oPvz4zfIT9toI2kl5JR-ez9VgI0GVHrhDdhGYxsKx-1_R7G96CQZJSZQLpJhyW2mgjR-e0U3sUfOpsWZHHr_cQ02Yb5Z2Uu4VSEGpyvp185SIXg2cZGbeAdqHa19X1HpBBdfl_JDD7zvtdugxPQ7ZL6vsRN_5vdeh_JGDgJlNRfDs_95XLQ9n5r9fMvSrdUWKs8YdKLbWc57iJQR2FM_D4UWg2JfCn72POAt17A6y-QrygbY--oa1KmkyOnniBVQ2ehdL9MnZKw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface group-hover:text-teal-600 transition-colors">Lucia Velez</p>
+<p class="text-[10px] text-slate-400 font-medium">78 Reservas</p>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-tertiary-fixed/40 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-tertiary">4.7</span>
+</div>
+</div>
+<!-- Colaboradora 4 -->
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="Maria Cano" class="w-full h-full object-cover" data-alt="Close-up face of a cheerful woman working in customer service with soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHEoRfdWIoYWbIEvUbIY78F5ykLud_q866-Iy3BbZ3PhJ6R0CEbbpQofYkpK9VXN8QyNnu865YvlzXEWmvuR3LG5gDQrkUQiQVHLT0nDIqFg1xXXnQ29dJXphVJLJ7z-0gceIHBCa9JMqLT6T6p1MaX764p55YlYVGB99jCPxnoHVu6iguQD3RwXGNvsFrcrLl_v49hzOdhHXMCp1QvVGlqO1ySQ9VzHC8JIfA-aJV4m2NO135O7WkWI3l69LQW7WlewreVP9CaZc"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface group-hover:text-teal-600 transition-colors">Maria Cano</p>
+<p class="text-[10px] text-slate-400 font-medium">64 Reservas</p>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-tertiary-fixed/40 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-tertiary">4.7</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-4 bg-slate-50 text-slate-600 text-[11px] font-bold uppercase tracking-widest rounded-2xl hover:bg-teal-50 hover:text-teal-700 transition-all">Ver Ranking Completo</button>
+</div>
+<!-- Live Pulse Activity -->
+<div class="bg-primary-container p-8 rounded-[2.5rem] text-on-primary-container shadow-lg shadow-teal-900/10">
+<div class="flex items-center gap-3 mb-6">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-300 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-teal-400"></span>
+</span>
+<h3 class="text-lg font-bold tracking-tight">Actividad en Vivo</h3>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="p-2 bg-white/10 rounded-lg">
+<span class="material-symbols-outlined text-sm" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<div>
+<p class="text-xs font-bold">Reserva confirmada</p>
+<p class="text-[10px] opacity-70">En Bogotá, hace 2 mins</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="p-2 bg-white/10 rounded-lg">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+</div>
+<div>
+<p class="text-xs font-bold">Nuevo Limpiador Vetted</p>
+<p class="text-[10px] opacity-70">Medellín, hace 15 mins</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Margin-top for spacing breathing room -->
+<div class="mt-32"></div>
+</main>
+</body></html>

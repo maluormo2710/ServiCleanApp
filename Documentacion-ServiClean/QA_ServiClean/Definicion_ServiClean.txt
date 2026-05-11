@@ -1,0 +1,64 @@
+=================================================================
+CASO DE ESTUDIO: SERVICLEAN
+=================================================================
+La empresa ServiClean S.A. quiere incentivar la creación de un nuevo servicio en el área metropolitana del Valle de Aburrá, el cual consiste en brindar servicios domésticos a domicilio. Para esto, requieren el desarrollo de un sistema integral de reservas donde los solicitantes puedan visualizar las opciones y cualidades de cada empleada doméstica disponible. El sistema debe permitir filtrar por días de reserva y horarios, visualizar habilidades, procesar pagos en línea, y gestionar un sistema de calificación y registro histórico de los servicios prestados.
+
+-----------------------------------------------------------------
+ACTORES Y ROLES
+-----------------------------------------------------------------
+1. Administradores del sistema (Los vigilantes): 
+   Gestionan la plataforma, supervisan las operaciones, administran perfiles de usuarias/os (inhabilitan cuentas si es necesario) y generan reportes de métricas y rendimiento.
+
+2. Colaboradores (Los que ofrecen el servicio): 
+   Empleadas domésticas que ofrecen sus servicios, gestionan la información de su perfil, actualizan su disponibilidad de agenda, reciben notificaciones de servicios y visualizan sus calificaciones.
+
+3. Clientes (Los que contratan el servicio): 
+   Usuarios que buscan y filtran empleadas, reservan horarios específicos, realizan pagos en línea y dejan calificaciones y comentarios sobre los servicios finalizados.
+
+-----------------------------------------------------------------
+HISTORIAS DE USUARIO
+-----------------------------------------------------------------
+HU01: Como cliente, quiero poder visualizar un listado filtrable de empleadas domésticas y su disponibilidad, para seleccionar la que mejor se ajuste a mis horarios.
+HU02: Como cliente, quiero poder calificar el servicio y dejar un comentario, para ayudar a otros usuarios y dar retroalimentación a la colaboradora.
+HU03: Como usuario (cliente/colaborador), quiero poder crear y editar mi perfil con mi información personal y habilidades, para mantener mis datos actualizados.
+HU04: Como usuario, quiero ingresar al sistema con mi correo y contraseña de forma segura, para proteger mi información.
+HU05: Como cliente o colaborador, quiero ver un historial de los servicios que he tomado o prestado, para tener un control de mis actividades.
+HU06: Como cliente o colaborador, quiero recibir notificaciones push en mi celular sobre reservas y recordatorios, para no olvidar mis citas programadas.
+HU07: Como administrador, quiero visualizar un panel de reportes con métricas de reservas y calificaciones, para tomar decisiones de negocio.
+HU08: Como cliente, quiero pagar el servicio en línea con mi tarjeta, para no tener que manejar dinero en efectivo.
+
+-----------------------------------------------------------------
+CASOS DE USO (CU)
+-----------------------------------------------------------------
+CU-Busqueda-Disponibilidad : Filtrado y selección de empleadas en agenda.
+CU-Calificar-Servicio      : Asignación de estrellas y reseñas.
+CU-Gestion-Perfiles        : Creación, lectura, actualización y bloqueo de usuarios.
+CU-Autenticacion-Roles     : Login, registro y redirección según tipo de usuario.
+CU-Navegacion-Responsiva   : Adaptación visual de la plataforma en móviles/web.
+CU-Consulta-Historial      : Visualización de servicios pasados ordenados por fecha.
+CU-Gestion-Notificaciones  : Disparo automático de alertas y recordatorios.
+CU-Generacion-Reportes     : Panel de métricas e inteligencia de negocio para admins.
+CU-Procesar-Pago           : Integración con pasarela de pagos (retención y captura).
+CU-Seguridad-Datos         : Encriptación y hashing de información sensible.
+CU-Rendimiento-Consultas   : Gestión de tiempos de respuesta del servidor.
+CU-Prueba-Estres           : Auto-escalado y soporte de picos de tráfico.
+
+-----------------------------------------------------------------
+REQUERIMIENTOS FUNCIONALES (RF)
+-----------------------------------------------------------------
+RF-01 (Búsqueda y Disponibilidad): El sistema debe permitir a los clientes visualizar un listado filtrable de empleadas domésticas y su disponibilidad de agenda.
+RF-02 (Calificaciones y Reseñas): El sistema debe permitir a los clientes asignar una calificación (1 a 5) y un comentario tras la finalización del servicio.
+RF-03 (Gestión de Perfiles): El sistema debe gestionar (crear, leer, actualizar, inhabilitar) la información de los perfiles de clientes y colaboradores.
+RF-04 (Autenticación y Roles): El sistema debe validar las credenciales de acceso de los usuarios asignando roles específicos (Admin, Colaborador, Cliente).
+RF-05 (Diseño Responsivo): El sistema debe adaptar su interfaz gráfica dinámicamente para resoluciones de pantallas móviles y navegadores web.
+RF-06 (Historial de Servicios): El sistema debe mostrar un registro histórico detallado de los servicios prestados, ordenado por fecha.
+RF-07 (Sistema de Notificaciones): El sistema debe enviar notificaciones sobre la confirmación de reservas y recordatorios 24 horas antes del servicio.
+RF-08 (Métricas y Reportes): El sistema debe generar reportes agregados para los administradores sobre volumen de reservas y promedio de calificaciones.
+RF-09 (Pagos en Línea): El sistema debe procesar el pago en línea reteniendo los fondos hasta la confirmación de finalización del servicio.
+
+-----------------------------------------------------------------
+REQUERIMIENTOS NO FUNCIONALES (RNF)
+-----------------------------------------------------------------
+RNF-01 (Seguridad y Criptografía): Los datos sensibles deben estar encriptados bajo estándares actuales (ej. AES-256) en la base de datos.
+RNF-02 (Rendimiento y Latencia): El tiempo de respuesta en búsquedas no debe exceder 3 segundos con una carga de hasta 500 usuarios concurrentes.
+RNF-03 (Escalabilidad y Estrés): El sistema debe escalar soportando un incremento del 50% de su tráfico base (1,500 peticiones/hora).

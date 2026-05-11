@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#321300",
+                    "surface-container": "#edeeef",
+                    "on-primary-container": "#e3fffe",
+                    "on-surface-variant": "#3e4949",
+                    "inverse-primary": "#76d6d5",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-fixed-dim": "#adc7ff",
+                    "on-tertiary-container": "#fff8f6",
+                    "surface-container-highest": "#e1e3e4",
+                    "inverse-on-surface": "#f0f1f2",
+                    "secondary-fixed": "#d8e2ff",
+                    "outline": "#6e7979",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2e3132",
+                    "secondary": "#0059bb",
+                    "tertiary-container": "#b85700",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#008080",
+                    "primary-fixed-dim": "#76d6d5",
+                    "on-surface": "#191c1d",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "on-secondary-fixed": "#001a41",
+                    "on-secondary-fixed-variant": "#004493",
+                    "tertiary-fixed-dim": "#ffb68a",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-container": "#0070ea",
+                    "primary": "#006565",
+                    "on-primary-fixed": "#002020",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1d",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#743500",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d9dadb",
+                    "outline-variant": "#bdc9c8",
+                    "background": "#f8f9fa",
+                    "surface-tint": "#006a6a",
+                    "primary-fixed": "#93f2f2",
+                    "tertiary": "#924400",
+                    "surface-container-high": "#e7e8e9",
+                    "surface": "#f8f9fa",
+                    "tertiary-fixed": "#ffdbc8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md docked full-width top-0 sticky z-50 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-teal-600 dark:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-2xl font-extrabold text-teal-700 dark:text-teal-400 tracking-tighter">ServiClean</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Foto de perfil del usuario" class="w-full h-full object-cover" data-alt="Professional profile portrait of a clean-cut man smiling in a bright airy studio environment with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlKg_UBJFQovH0_yUNkglpPXGq48O5My9RvJFx9XJZg-JzPWV-z_PF03_bZO8KWsWkNP4DO_nq2UE-NcZwdU1pxzbdznvBefQscg7v14tM5cbk1P7rX5XhC8Oq4h3lfomidi9flZEbURnZ7lySjrFEiMaTgUIgySfnE4G5q1wC9JFWNDREyc-iZp_7dSh7zjpfbHXxNSQGM3-XHv62kMS9T2N59isv5WcHt2_-vH5iC47sN73ynPFU405nBBn46XJT67kViqrrb6I"/>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-8 text-center mt-[-4rem]">
+<!-- Feature Not Available Canvas -->
+<div class="w-full max-w-sm flex flex-col items-center">
+<!-- Editorial Illustration Container -->
+<div class="relative w-64 h-64 mb-12 flex items-center justify-center">
+<!-- Decorative Layered Shapes (The "Glass & Gradient" Rule) -->
+<div class="absolute inset-0 bg-primary/5 rounded-full scale-110 blur-2xl"></div>
+<div class="absolute w-48 h-48 bg-primary-fixed/30 rounded-[2.5rem] rotate-12"></div>
+<!-- Main Visual -->
+<div class="relative bg-surface-container-lowest shadow-[0_12px_32px_rgba(0,101,101,0.06)] p-8 rounded-[2rem] border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-[80px] leading-none" data-icon="construction">construction</span>
+<!-- Pulse Indicator -->
+<div class="absolute top-6 right-6 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
+</div>
+</div>
+</div>
+<!-- Typography Hierarchy (The Editorial Voice) -->
+<h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight mb-4">Función en camino</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed mb-12 max-w-[280px]">
+                Estamos puliendo los últimos detalles para brindarte la mejor experiencia de limpieza profesional.
+            </p>
+<!-- Buttons (The "Soft-Touch" CTA) -->
+<div class="w-full space-y-4">
+<a class="editorial-gradient text-on-primary font-semibold py-4 px-8 rounded-full w-full inline-block shadow-lg shadow-primary/20 hover:brightness-110 transition-all active:scale-[0.98]" href="#">
+                    Regresar al Inicio
+                </a>
+<div class="flex items-center justify-center gap-2 py-2">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="schedule">schedule</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider text-tertiary">Disponible pronto</span>
+</div>
+</div>
+</div>
+<!-- Trust Badges (Material Chips) -->
+</main>
+<!-- BottomNavBar (Visibility & Relevance Check: Suppression not applied here as Home is a top-level destination) -->
+</body></html>

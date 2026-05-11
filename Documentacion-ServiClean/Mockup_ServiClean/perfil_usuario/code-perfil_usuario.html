@@ -1,0 +1,246 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "primary-fixed-dim": "#76d6d5",
+              "background": "#f8f9fa",
+              "secondary-container": "#0070ea",
+              "surface": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "primary-fixed": "#93f2f2",
+              "primary": "#006565",
+              "on-surface": "#191c1d",
+              "tertiary": "#924400",
+              "surface-container-high": "#e7e8e9",
+              "outline-variant": "#bdc9c8",
+              "on-surface-variant": "#3e4949",
+              "error": "#ba1a1a",
+              "outline": "#6e7979",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1d",
+              "on-secondary-fixed-variant": "#004493",
+              "on-primary-container": "#e3fffe",
+              "primary-container": "#008080",
+              "on-secondary-fixed": "#001a41",
+              "surface-container-low": "#f3f4f5",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed-variant": "#004f4f",
+              "secondary-fixed-dim": "#adc7ff",
+              "inverse-on-surface": "#f0f1f2",
+              "on-tertiary-fixed": "#321300",
+              "surface-tint": "#006a6a",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-primary": "#76d6d5",
+              "on-tertiary-container": "#fff8f6",
+              "secondary-fixed": "#d8e2ff",
+              "secondary": "#0059bb",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed": "#ffdbc8",
+              "tertiary-fixed-dim": "#ffb68a",
+              "surface-variant": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed": "#002020",
+              "tertiary-container": "#b85700"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center w-full px-6 py-4 docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-teal-600 dark:text-teal-400" style="">menu</span>
+<span class="text-2xl font-extrabold text-teal-700 dark:text-teal-400 tracking-tighter" style="">ServiClean</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary ring-2 ring-primary-fixed">
+<img alt="Foto de perfil del usuario" class="w-full h-full object-cover" data-alt="Professional portrait of a confident cleaning specialist smiling in a clean modern environment with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqS7yHumnG9OPx9e5B4Vnyr08q0jAgdCmiJBWmXoPoN3_ijCpVO0N2lv9ViGGNQfOtIT9JEpbUmja7dcW6sh1XGTLL_GD6LjWZIghXeBbmqO40xvwulnhQzYfmtqlWitvJ3_wLSBU2pzgoluAqvf9qEzFU-vZJ9NcBAz08K1tzkJlzRjWmQgTb959kGtXKgL9sFF5JZmoJsW8Uk3SWiIcemiVG6YDWX58bmw06-56z0LdBCh1n_HfoG_KnnrImiGKZLz_P3a4pwwI" style="">
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6">
+<!-- Profile Header Section (Asymmetric Editorial Style) -->
+<section class="mt-12 mb-20 flex flex-col md:flex-row gap-12 items-start">
+<div class="relative w-full md:w-1/3 aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
+<img alt="Mariana Rodriguez" class="w-full h-full object-cover" data-alt="Large high-quality profile photo of a professional woman with a warm smile, wearing a clean uniform, soft blurred interior background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgQlHL7fzfNS9NqI6o29Euig4R_EBrH435KfwZzIW6QyxS_CX0FO_eALX0WkNV9jE44NMdqZKW_eRFnvkAaMRdth6nAvqoWwN1os5JIGGVaUidZl9v0ZCc-_dFPSbT5MVyoPFZjHvI04P6DGpqkTTxDHp9wHsb5LnVKshHS4Q_OmkcBXIH8eZbUfyc_xfqIpT3SkcNdmn58KRUYIQMwOv8OkudxdMx9t2IYsc3psTNv2miTBNBeSrWsL78mGvj1RjpBEM3syLcYAk" style="">
+<div class="absolute bottom-4 left-4">
+<span class="bg-surface-container-lowest/80 backdrop-blur-md text-primary font-bold px-4 py-2 rounded-full text-sm flex items-center gap-2" style="">
+<span class="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+                        Activo
+                    </span>
+</div>
+</div>
+<div class="flex-1 space-y-6 pt-4">
+<div class="space-y-1">
+<span class="text-secondary font-semibold tracking-widest text-[11px] uppercase" style="">Especialista en Limpieza</span>
+<h1 class="text-5xl font-extrabold text-on-surface tracking-tight leading-tight" style="">Mariana Rodriguez</h1>
+<p class="text-xl text-on-surface-variant flex items-center gap-2 font-medium" style="">
+<span class="material-symbols-outlined text-primary" style="">call</span>
+                        +57 312 456 7890
+                    </p>
+</div>
+<div class="flex gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-3 rounded-xl font-bold text-sm hover:opacity-90 transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20" style="">
+<span class="material-symbols-outlined text-[20px]" style="">edit</span>
+                        Editar Perfil
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid for Profile Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+<!-- Skills Section (Worker Specific) -->
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-[2rem] border-none">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-3" style="">
+<span class="material-symbols-outlined text-primary" style="">verified</span>
+                    Habilidades y Especialidades
+                </h3>
+<div class="flex flex-wrap gap-3">
+<span class="bg-surface-container-low text-on-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-fixed transition-colors cursor-default border border-outline-variant/20" style="">Planchado</span>
+<span class="bg-surface-container-low text-on-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-fixed transition-colors cursor-default border border-outline-variant/20" style="">Limpieza profunda</span>
+<span class="bg-surface-container-low text-on-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-fixed transition-colors cursor-default border border-outline-variant/20" style="">Organización de armarios</span>
+<span class="bg-surface-container-low text-on-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-fixed transition-colors cursor-default border border-outline-variant/20" style="">Limpieza de vidrios</span>
+<span class="bg-surface-container-low text-on-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-fixed transition-colors cursor-default border border-outline-variant/20" style="">Desinfección</span>
+</div>
+<div class="mt-8 p-4 bg-tertiary-fixed/30 rounded-2xl flex items-center gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: &quot;FILL&quot; 1;">stars</span>
+<p class="text-sm font-semibold text-tertiary" style="">Personal Vetted &amp; Insured - 4.9 de calificación promedio</p>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="bg-primary text-white p-8 rounded-[2rem] flex flex-col justify-between">
+<div>
+<h3 class="text-primary-fixed text-sm font-bold uppercase tracking-widest" style="">Servicios</h3>
+<p class="text-5xl font-black mt-2" style="">124</p>
+</div>
+<p class="text-primary-fixed/80 text-sm leading-relaxed mt-4" style="">Completados con éxito en los últimos 6 meses en Bogotá.</p>
+</div>
+</div>
+<!-- Upcoming Bookings Section -->
+<section class="mb-20">
+<div class="flex justify-between items-end mb-8 px-2">
+<div>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight" style="">Próximos Servicios</h2>
+<p class="text-on-surface-variant font-medium" style="">Gestión de tu agenda para esta semana</p>
+</div>
+<button class="text-secondary font-bold text-sm flex items-center gap-1 hover:underline" style="">
+                    Ver calendario completo
+                    <span class="material-symbols-outlined text-[18px]" style="">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Booking Item 1 -->
+<div class="group bg-surface-container-low hover:bg-surface-container-lowest transition-all p-6 rounded-[2rem] flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer">
+<div class="flex items-center gap-6">
+<div class="bg-white dark:bg-slate-800 w-16 h-16 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+<span class="text-primary font-black text-xl leading-none" style="">24</span>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant" style="">Oct</span>
+</div>
+<div>
+<h4 class="font-bold text-lg text-on-surface" style="">Limpieza de Apartamento (3H)</h4>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium" style="">
+<span class="material-symbols-outlined text-[16px]" style="">schedule</span>
+                                    08:00 AM
+                                </span>
+<span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium" style="">
+<span class="material-symbols-outlined text-[16px]" style="">location_on</span>
+                                    Calle 127 #45-12, Bogotá
+                                </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" style="">chevron_right</span>
+</div>
+</div>
+<!-- Booking Item 2 -->
+<div class="group bg-surface-container-low hover:bg-surface-container-lowest transition-all p-6 rounded-[2rem] flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer">
+<div class="flex items-center gap-6">
+<div class="bg-white dark:bg-slate-800 w-16 h-16 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+<span class="text-primary font-black text-xl leading-none" style="">26</span>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant" style="">Oct</span>
+</div>
+<div>
+<h4 class="font-bold text-lg text-on-surface" style="">Limpieza Profunda Oficina</h4>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium" style="">
+<span class="material-symbols-outlined text-[16px]" style="">schedule</span>
+                                    10:00 AM
+                                </span>
+<span class="flex items-center gap-1 text-on-surface-variant text-sm font-medium" style="">
+<span class="material-symbols-outlined text-[16px]" style="">location_on</span>
+                                    Carrera 7 #72-10, Bogotá
+                                </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" style="">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Logout Action -->
+<div class="flex justify-center pt-8 border-t border-surface-container-high">
+<button class="group flex items-center gap-3 text-error font-bold text-sm px-6 py-3 rounded-full hover:bg-error-container/20 transition-all" style="">
+<span class="material-symbols-outlined" style="">logout</span>
+                Cerrar Sesión
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-12px_32px_rgba(0,101,101,0.06)] border-t border-slate-100 dark:border-slate-800">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400">
+<span class="material-symbols-outlined" style="">home</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1" style="">Inicio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400">
+<span class="material-symbols-outlined" style="">cleaning_services</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1" style="">Servicios</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-2xl px-5 py-2 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">person</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1" style="">Perfil</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-400">
+<span class="material-symbols-outlined" style="">notifications</span>
+<span class="text-[11px] font-manrope font-semibold uppercase tracking-wider mt-1" style="">Notificaciones</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,172 @@
+Requisito: RF-01
+
+Escenario 1: Búsqueda exitosa con resultados disponibles.
+  - Dado que el cliente se encuentra autenticado y en la vista frm_inicio_busqueda.
+  - Cuando selecciona el filtro de fecha para "Mañana a las 08:00 AM" y presiona el botón "Buscar".
+  - Entonces el sistema debe consultar la base de datos de perfiles.
+  - Y mostrar una lista en pantalla con las colaboradoras que tengan su estado como "Disponible" en esa franja horaria.
+
+Escenario 2: Búsqueda sin colaboradoras disponibles (Manejo de Empty State).
+  - Dado que el cliente se encuentra en la vista frm_inicio_busqueda.
+  - Cuando selecciona una fecha de alta demanda (ej. 24 de Diciembre a las 10:00 AM) donde la disponibilidad es cero.
+  - Entonces el sistema debe mostrar un mensaje amigable indicando: "No hay colaboradoras disponibles en este horario".
+  - Y sugerir al usuario el horario más cercano con disponibilidad.
+
+--------------------------------------------------
+
+Requisito: RF-02
+
+Escenario 1: Registro exitoso de una nueva calificación.
+  - Dado que un cliente tiene una reserva con estado "Finalizado".
+  - Cuando el cliente ingresa al modal_calificacion_servicio, selecciona "5 estrellas", escribe un comentario y presiona "Enviar".
+  - Entonces el sistema debe guardar la reseña en el perfil de la colaboradora correspondiente.
+  - Y recalcular inmediatamente el promedio general de calificación de esa colaboradora.
+
+--------------------------------------------------
+
+Requisito: RF-03
+
+Escenario 1: Actualización exitosa de datos de contacto.
+  - Dado que un cliente o colaborador se encuentra autenticado en la vista frm_perfil_usuario.
+  - Cuando modifica su número de celular ingresando un valor numérico válido de 10 dígitos y presiona "Actualizar Perfil".
+  - Entonces el sistema debe actualizar el registro correspondiente en la base de datos.
+  - Y mostrar una notificación visual de éxito: "Tu perfil ha sido actualizado correctamente."
+
+Escenario 2: Protección de integridad al inhabilitar usuarios.
+  - Dado que un Administrador intenta inhabilitar a un Colaborador desde su panel de gestión.
+  - Cuando el sistema verifica internamente que el Colaborador aún tiene reservas con estado "Confirmada".
+  - Entonces el sistema debe impedir el cambio de estado del perfil.
+  - Y exigir al Administrador que reasigne o cancele dichas reservas previamente para evitar que un cliente se quede sin el servicio programado.
+
+--------------------------------------------------
+
+Requisito: RF-04
+
+Escenario 1: Redirección basada en roles al iniciar sesión.
+  - Dado que un usuario con el rol de "Colaborador" está en la pantalla view_login_registro.
+  - Cuando ingresa sus credenciales correctas y presiona "Ingresar".
+  - Entonces el sistema debe validar la autenticación.
+  - Y redirigir al usuario automáticamente a su panel de gestión de agenda (evitando que aterrice en la vista de búsqueda de clientes que no le corresponde).
+
+Escenario 2: Denegación de acceso por credenciales inválidas.
+  - Dado que un usuario no autenticado está en la pantalla view_login_registro.
+  - Cuando ingresa un correo registrado pero una contraseña incorrecta y presiona "Ingresar".
+  - Entonces el sistema debe impedir el acceso.
+  - Y mostrar un mensaje de error que diga "Correo o contraseña incorrectos", sin especificar cuál de los dos datos fue el que falló (por seguridad).
+
+--------------------------------------------------
+
+Requisito: RF-05
+
+Escenario 1: Reorganización estructural en pantallas pequeñas.
+  - Dado que un cliente o colaborador accede a la plataforma ServiClean desde un dispositivo móvil (ancho de pantalla inferior a 768px).
+  - Cuando la interfaz gráfica se renderiza en el navegador del dispositivo.
+  - Entonces el sistema debe organizar automáticamente los bloques de contenido principal en formato de columna única.
+  - Y asegurar que todos los textos mantengan proporciones legibles sin necesidad de hacer "zoom" manual en la pantalla.
+
+Escenario 2: Despliegue de elementos de navegación responsivos.
+  - Dado que el usuario visualiza la plataforma en un teléfono móvil.
+  - Cuando intenta acceder a opciones como "Mi Perfil", "Historial" o "Cerrar Sesión".
+  - Entonces el sistema debe permitirle interactuar con un menú desplegable ocultable (menú hamburguesa).
+  - Y oscurecer o difuminar el fondo temporalmente mientras el menú esté abierto para enfocar la atención del usuario.
+
+--------------------------------------------------
+
+Requisito: RF-06
+
+Escenario 1: Visualización exitosa del historial por defecto.
+  - Dado que un usuario (Cliente o Colaborador) tiene al menos un servicio finalizado en su cuenta y se encuentra autenticado.
+  - Cuando navega a la sección view_historial_servicios.
+  - Entonces el sistema debe cargar una lista o tabla de los servicios pasados.
+  - Y ordenarlos por fecha de forma descendente (los más recientes primero), mostrando detalles como fecha, nombre de la contraparte, estado final y valor pagado.
+
+Escenario 2: Interfaz amigable para historial vacío (Usuario Nuevo).
+  - Dado que un usuario recién registrado (sin reservas previas) navega a la vista view_historial_servicios.
+  - Cuando el sistema realiza la consulta a la base de datos y retorna cero resultados.
+  - Entonces el sistema debe mostrar un estado vacío (Empty State) ilustrado.
+  - Y desplegar un mensaje que diga: "Aún no tienes servicios en tu historial", acompañado de un botón de llamado a la acción que diga "Buscar Empleadas" (si es cliente) para incentivar su primera reserva.
+
+--------------------------------------------------
+
+Requisito: RF-07
+
+Escenario 1: Notificación inmediata de confirmación.
+  - Dado que un cliente acaba de completar exitosamente el flujo de pago o retención en frm_checkout_pago.
+  - Cuando el estado de la reserva cambia internamente a "Confirmada".
+  - Entonces el sistema debe despachar inmediatamente una notificación a la cuenta del Cliente y a la de la Colaboradora asignada.
+  - Y el mensaje debe contener la fecha, hora y dirección del servicio programado.
+
+Escenario 2: Disparo automático de recordatorio 24 horas antes.
+  - Dado que existe una reserva en estado "Confirmada" en el sistema.
+  - Cuando el reloj del servidor detecta que faltan exactamente 24 horas para el inicio programado del servicio.
+  - Entonces el sistema debe generar una alerta de recordatorio.
+  - Y enviarla a los dispositivos móviles del Cliente y de la Colaboradora con el texto: "Recuerda que tienes un servicio programado para mañana".
+
+--------------------------------------------------
+
+Requisito: RF-08
+
+Escenario 1: Visualización del resumen general de métricas (Por defecto).
+  - Dado que un usuario con rol de "Administrador" inicia sesión y accede al dashboard_admin_metricas.
+  - Cuando el panel de control termina de cargar por primera vez.
+  - Entonces el sistema debe calcular y mostrar por defecto las métricas del mes en curso (ej. Total de reservas del mes, Promedio general de calificaciones).
+  - Y representarlas mediante gráficos visuales (ej. gráfico de barras para reservas diarias).
+
+Escenario 2: Filtrado de rendimiento por colaboradora específica.
+  - Dado que el Administrador se encuentra analizando el reporte de calificaciones en el dashboard.
+  - Cuando utiliza la barra de búsqueda para seleccionar el perfil de una colaboradora específica (ej. "María López") y presiona "Filtrar".
+  - Entonces el sistema debe actualizar dinámicamente las gráficas y las tarjetas de datos.
+  - Y aislar exclusivamente el volumen de reservas atendidas y el promedio exacto de estrellas obtenido únicamente por esa colaboradora en el periodo seleccionado.
+
+--------------------------------------------------
+
+Requisito: RF-09
+
+Escenario 1: Retención preventiva de fondos (Autorización).
+  - Dado que el cliente se encuentra en la pantalla frm_checkout_pago confirmando un servicio de $80,000 COP.
+  - Cuando ingresa una tarjeta de crédito válida, con fondos suficientes, y hace clic en "Pagar y Reservar".
+  - Entonces el sistema debe comunicarse con la pasarela de pagos.
+  - Y realizar una "retención" (hold) por los $80,000 COP sin debitarlos de la cuenta aún.
+  - Y cambiar el estado de la reserva de "Pendiente" a "Confirmada".
+
+Escenario 2: Liberación del pago (Captura).
+  - Dado que existe una reserva en estado "Confirmada" con fondos retenidos.
+  - Cuando el colaborador o el sistema marcan el servicio como "Finalizado" tras cumplir el horario.
+  - Entonces el sistema debe notificar a la pasarela de pagos para hacer el cargo efectivo (captura) de los fondos retenidos.
+  - Y generar el comprobante de pago para el cliente.
+
+--------------------------------------------------
+
+Requisito: RNF-01
+
+Escenario 1: Almacenamiento seguro de contraseñas (Hashing).
+  - Dado que un nuevo usuario o colaborador completa el formulario de registro.
+  - Cuando el sistema procesa la solicitud para guardar la cuenta en la base de datos.
+  - Entonces el servidor (backend) debe aplicar un algoritmo de hashing fuerte (ej. bcrypt) con un "salt" aleatorio.
+  - Y almacenar únicamente el hash resultante en la base de datos, garantizando que ni siquiera los administradores del sistema puedan leer la contraseña original.
+
+Escenario 2: Protección de datos financieros en tránsito y reposo.
+  - Dado que un cliente ingresa los datos de su tarjeta de crédito para pagar una reserva.
+  - Cuando la información viaja desde el navegador del cliente hasta el servidor y posteriormente se registra.
+  - Entonces la transmisión debe realizarse forzosamente bajo el protocolo HTTPS (TLS 1.2 o superior).
+  - Y cualquier registro en los logs del servidor o en la base de datos debe enmascarar el número de la tarjeta, dejando visibles únicamente los últimos 4 dígitos (ej. **** **** **** 4444).
+
+--------------------------------------------------
+
+Requisito: RNF-02
+
+Escenario 1: Cumplimiento de latencia bajo concurrencia máxima esperada.
+  - Dado que la plataforma ServiClean se encuentra operando en un entorno de producción o pre-producción (Staging).
+  - Cuando 500 usuarios concurrentes ejecutan una petición al motor de búsqueda de empleadas al mismo tiempo.
+  - Entonces la infraestructura del servidor (Balanceador de carga, Backend y Base de Datos) debe procesar las solicitudes de manera asíncrona.
+  - Y garantizar que el tiempo máximo de respuesta para el usuario no supere los 3,000 milisegundos (3 segundos).
+
+Escenario 2: Tolerancia a fallos sin denegación de servicio.
+  - Dado que el sistema está siendo sometido a la prueba de los 500 usuarios concurrentes.
+  - Cuando se analizan los registros (logs) de respuesta del servidor al finalizar la prueba.
+  - Entonces la tasa de errores de conexión (timeouts o caídas de base de datos) debe ser del 0%.
+  - Y todos los usuarios deben recibir una respuesta HTTP 200 (OK) con el JSON de los resultados de su búsqueda.
+
+--------------------------------------------------
+
+Requisito: RNF-03
