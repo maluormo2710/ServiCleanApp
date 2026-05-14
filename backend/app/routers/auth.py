@@ -45,7 +45,7 @@ def registro(body: RegistroInput, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(nuevo_usuario)
 
-    token = create_access_token(data={"sub": nuevo_usuario.id, "rol": nuevo_usuario.rol})
+    token = create_access_token(data={"sub": str(nuevo_usuario.id), "rol": nuevo_usuario.rol})
     return TokenResponse(
         access_token=token,
         rol=nuevo_usuario.rol,
@@ -77,7 +77,7 @@ def login(body: LoginInput, db: Session = Depends(get_db)):
             detail="Tu cuenta ha sido deshabilitada. Contacta al soporte.",
         )
 
-    token = create_access_token(data={"sub": usuario.id, "rol": usuario.rol})
+    token = create_access_token(data={"sub": str(usuario.id), "rol": usuario.rol})
     return TokenResponse(
         access_token=token,
         rol=usuario.rol,

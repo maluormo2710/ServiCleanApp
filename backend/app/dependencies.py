@@ -27,12 +27,12 @@ def get_current_user(
     if payload is None:
         raise credentials_exception
 
-    user_id: int = payload.get("sub")
+    user_id = payload.get("sub")
     if user_id is None:
         raise credentials_exception
 
     usuario = db.query(Usuario).filter(
-        Usuario.id == user_id,
+        Usuario.id == int(user_id),
         Usuario.activo == True,
     ).first()
 
